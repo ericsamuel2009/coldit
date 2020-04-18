@@ -13,20 +13,20 @@ router.get('/', async (req,res)=>{ //TODO LOS Items
             if(resultado.length > 0){
                res.json(resultado)
             }else{
-               res.send("registro no encontrado")
+               res.send("item no encontrado")
             }
          }
       }
    );
  })
 
- router.post('/', async (req,res)=>{
+ router.post('/', async (req,res)=>{ //AGREGAR UN NUEVO ITEM
    const result = await db.query('INSERT INTO item set ?', [req.body]);
    res.json({ message: 'ITEM GUARDADO' });
  })
 
 
-router.get('/:codigo', async (req,res)=>{ //ULTIMOS POST
+router.get('/:codigo', async (req,res)=>{ 
    const {codigo} = req.params;
   var query = await db.query('SELECT valor  FROM producto WHERE codigo = ?',[codigo], function(error, result){
         if(error){
@@ -36,25 +36,11 @@ router.get('/:codigo', async (req,res)=>{ //ULTIMOS POST
            if(resultado.length > 0){
               res.json(resultado)
            }else{
-              res.send("No Hay Registros En valor")
+              res.send("No Hay Registros En producto")
            }
         }
      }
   );
-})
-
-router.get('/redes', async (req,res)=>{
-  var query = await db.query("SELECT * FROM redes WHERE estadoRed = ?",[1],function(error,result){
-    if (error) {
-      throw error;
-    }else{
-        if (result.length > 0) {
-          res.json(result);
-        }else {
-          res.send("No se Encontro Ningun registro")
-        }
-    }
-  })
 })
 
 module.exports = router

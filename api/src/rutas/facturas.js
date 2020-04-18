@@ -18,7 +18,7 @@ router.get('/', async (req,res)=>{
   });
 })
 
-router.get('/calcular/:id', async (req,res)=>{ // UL LI
+router.get('/calcular/:id', async (req,res)=>{
   const {id} = req.params;
   var query = await db.query('SELECT producto,SUM(valorTotal) facturacion,nombre FROM item JOIN producto ON producto = codigo WHERE producto = ? ',[id],function(error,result){
     if (error) {

@@ -5,7 +5,7 @@ const db = require('./../../database/database.ts');
 
 
 //RUTAS
-router.get('/', async (req,res)=>{ //TODO LOS POSTS
+router.get('/', async (req,res)=>{ 
   var query = await db.query('SELECT * from producto', function(error, result){
         if(error){
            throw error;
@@ -34,8 +34,6 @@ router.delete('/:id', async (req,res)=>{ //ELIMINAR UN PRODUCTO
 })
 
 router.post('/', async (req,res)=>{
-  //const { codigo, valor, nombre} = req.body;
-  //const nuevoPost = {idPos,...req.body};
   const result = await db.query('INSERT INTO producto set ?', [req.body]);
   res.json({ message: 'PRODUCTO GUARDADO' });
 })
