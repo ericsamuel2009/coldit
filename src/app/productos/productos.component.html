@@ -1,0 +1,46 @@
+
+ 
+  <h1>PRODUCTOS</h1>
+<form class="form-inline" >
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="inputPassword2" class="sr-only">Codigo</label>
+    <input [disabled]="status == 'edit' " [(ngModel)]="productos.codigo" type="text" name="codigo" class="form-control" id="inputPassword2" placeholder="Codigo">
+  </div>
+  
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="inputPassword2" class="sr-only">nombre</label>
+    <input [(ngModel)]="productos.nombre" type="text" name="nombre" class="form-control" id="inputPassword2" placeholder="nombre">
+  </div>
+
+
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="inputPassword2" class="sr-only">Valor</label>
+    <input type="nomber" [(ngModel)]="productos.valor" name="valor" class="form-control" id="inputPassword2" placeholder="Valor">
+  </div>
+  <button class="btn btn-primary mb-2" (click)="agregarProducto()">Agregar</button>
+  <button type="submit" class="btn btn-danger mb-2" (click)="cancel()">Cancelar</button>
+</form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Codigo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let main of productos">
+        <th scope="row">{{main.codigo  }}</th>
+        <td>{{main.nombre}}</td>
+        <td>{{main.valor | currency}}</td>
+        <td>
+          <a class="btn btn-warning" (click)="edit(main)">Editar</a>
+          <a class="btn btn-danger" (click)="DeleteProducto(main.codigo)">Eliminar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+

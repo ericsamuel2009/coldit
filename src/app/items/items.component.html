@@ -1,0 +1,47 @@
+<h1>ITEMS</h1>
+
+  <!-- <button type="button" class="btn btn-secondary" >+</button> -->
+  
+  <form class="form-inline" >
+    
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="inputPassword2" class="sr-only">Producto</label>
+      <select class="custom-select" name="producto" [(ngModel)]="productos.codigo" (change)="agregarvalor(productos)">
+        <option value="" >Agregar Un Producto</option>
+        <option *ngFor="let mainproduc of productos" value="{{mainproduc.codigo}}">{{mainproduc.nombre}}</option>
+      </select>
+    </div>
+    
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="inputPassword2" class="sr-only">Cantidad</label>
+      <input [(ngModel)]="productos.valor" type="number" name="valor" class="form-control" id="inputPassword2" placeholder="valor" [disabled]="true">
+    </div>
+
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="inputPassword2" class="sr-only">Cantidad</label>
+      <input [(ngModel)]="items.cantidad" type="number" name="cantidad" class="form-control" id="inputPassword2" placeholder="Cantidad">
+    </div>
+  
+    <button class="btn btn-primary mb-2" (click)="agregaritem()">Agregar</button>
+    <!-- <button type="submit" class="btn btn-danger mb-2" (click)="cancel()">Cancelar</button> -->
+  </form>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Producto</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Valor Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let main of items">
+          <th scope="row">{{main.nombre}}</th>
+          <td>{{main.cantidad}}</td>
+          <td>{{main.valorTotal | currency}}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+  
+  
